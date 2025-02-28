@@ -58,7 +58,7 @@
         function handleClick() {
 
             if (isClicked) {
-                mudarPosicao();
+                changePosition();
             } else {
                 isClicked = true;
                 document.getElementById("botao").textContent = "Você vai clicar em mim de novo? 🫣";
@@ -72,9 +72,7 @@
         }
 
         function changePosition() {
-            if (!isClicked) {
-                return;
-            }
+        
             // Muda a frase do botão variando entre as frases do array
             contador = (contador + 1) % frases.length;
             document.getElementById("botao").textContent = frases[contador];
