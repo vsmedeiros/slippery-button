@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slippery Button</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        #botao {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: absolute;
+        }
+
+        #botao:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="botao" onclick="handleClick()" onmouseover="changePosition()">Dúvido você me clicar mais de uma vez! 🤔</button>
+
+    <script>
+        const frases = [
+            "Dúvido você me clicar! 😝", 
+            "Você vai clicar em mim de novo? 🤪",
+            "Eu sei que você não vai me clicar! 😝",
+            "Clica se conseguir! 🤪",
+            "Será que você me pega de novo? 😜",
+            "Eu sou mais rápido que você! 😝",
+            "Aperta o botão, vai... não vai doer! 😜",
+            "Eu sou o mestre dos botões, você não me pega! 🤪",
+            "Você realmente acha que vai me clicar de novo? 🤪"
+        ];
+
+        let contador = 0;
+        let isClicked = false;
+
+        function handleClick () {
+            if (isClicked) {
+                mudarPosicao();
+            } else {
+                isClicked = true;
+                document.getElementById("botao").textContent = "Você vai clicar em mim de novo? 🫣";
+            }
+        }
+
+        function changePosition() {
+            if (!isClicked) {
+                return;
+            }
+            // Muda a frase do botão variando entre as frases do array
+            contador = (contador + 1) % frases.length;
+            document.getElementById("botao").textContent = frases[contador];
+
+            // Mudar a posição do botão na tela aleatoriamente
+            const largura = window.innerWidth - 200;
+            const altura = window.innerHeight - 80;
+            const x = Math.floor(Math.random() * largura);
+            const y = Math.floor(Math.random() * altura);
+
+            document.getElementById("botao").style.left = `${x}px`;
+            document.getElementById("botao").style.top = `${y}px`;
+        }
+    </script>
+
+</body>
+
+</html>
